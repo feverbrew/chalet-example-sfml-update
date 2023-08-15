@@ -9,6 +9,7 @@
 	"files.associations": {
 		"*.json": "jsonc",
 		"*.desktop": "properties",
-		".clang-format": "yaml"
+		".clang-format": "yaml",
+		"array": "cpp"
 	}
 }

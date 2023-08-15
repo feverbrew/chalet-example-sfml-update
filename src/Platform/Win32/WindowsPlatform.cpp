@@ -9,6 +9,14 @@
 		#define DWMWA_USE_IMMERSIVE_DARK_MODE 20
 	#endif
 
+	#if defined __UINT32_MAX__ or UINT32_MAX
+		#include <inttypes.h>
+	#else
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
+typedef unsigned long uint32_t;
+typedef unsigned long long uint64_t;
+	#endif
 namespace util
 {
 /******************************************************************************
@@ -156,7 +164,7 @@ PBYTE WindowsPlatform::getIconDirectory(const int inResourceId)
  * This will attempt to load a single icon from an icon directory
  * If the requested size isn't found, the first one is returned
  *****************************************************************************/
-HICON WindowsPlatform::getIconFromIconDirectory(PBYTE inIconDirectory, const std::uint32_t inSize)
+HICON WindowsPlatform::getIconFromIconDirectory(PBYTE inIconDirectory, const uint32_t inSize)
 {
 	HMODULE hModule = GetModuleHandle(nullptr);
 	int resourceId = LookupIconIdFromDirectoryEx(inIconDirectory, TRUE, inSize, inSize, LR_DEFAULTCOLOR | LR_SHARED);

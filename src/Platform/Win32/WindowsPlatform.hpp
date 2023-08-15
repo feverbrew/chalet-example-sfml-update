@@ -5,6 +5,15 @@
 
 #include <array>
 
+#if defined __UINT32_MAX__ or UINT32_MAX
+	#include <inttypes.h>
+#else
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
+typedef unsigned long uint32_t;
+typedef unsigned long long uint64_t;
+#endif
+
 // TODO: WM_DISPLAYCHANGE event handling (multi-monitor support)
 
 namespace util
@@ -20,7 +29,7 @@ struct WindowsPlatform final : IPlatform
 
 private:
 	PBYTE getIconDirectory(const int inResourceId);
-	HICON getIconFromIconDirectory(PBYTE inIconDirectory, const std::uint32_t inSize);
+	HICON getIconFromIconDirectory(PBYTE inIconDirectory, const uint32_t inSize);
 	DWORD sfmlWindowStyleToWin32WindowStyle(const sf::Uint32 inStyle);
 
 	float m_screenScalingFactor = 0.0f;
